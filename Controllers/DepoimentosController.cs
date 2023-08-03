@@ -12,10 +12,10 @@ namespace alurachallengebackend7.Controllers
     public class DepoimentosController : ControllerBase
     {
 
-        private DepoimentoContext _context;
+        private ChallengeContext _context;
         private IMapper _mapper;
 
-        public DepoimentosController(IMapper mapper, DepoimentoContext context)
+        public DepoimentosController(IMapper mapper, ChallengeContext context)
         {
             _mapper = mapper;
             _context = context;

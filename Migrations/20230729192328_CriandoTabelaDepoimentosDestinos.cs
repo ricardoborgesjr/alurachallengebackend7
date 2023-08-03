@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace alurachallengebackend7.Migrations
 {
     /// <inheritdoc />
-    public partial class CriandoTabelaDeDepoimentos : Migration
+    public partial class CriandoTabelaDepoimentosDestinos : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -32,6 +32,24 @@ namespace alurachallengebackend7.Migrations
                     table.PrimaryKey("PK_Depoimentos", x => x.Id);
                 })
                 .Annotation("MySql:CharSet", "utf8mb4");
+
+            migrationBuilder.CreateTable(
+                name: "Destinos",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
+                    Nome = table.Column<string>(type: "varchar(100)", maxLength: 100, nullable: false)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    Preco = table.Column<double>(type: "double", nullable: false),
+                    Foto = table.Column<string>(type: "longtext", nullable: false)
+                        .Annotation("MySql:CharSet", "utf8mb4")
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Destinos", x => x.Id);
+                })
+                .Annotation("MySql:CharSet", "utf8mb4");
         }
 
         /// <inheritdoc />
@@ -39,6 +57,9 @@ namespace alurachallengebackend7.Migrations
         {
             migrationBuilder.DropTable(
                 name: "Depoimentos");
+
+            migrationBuilder.DropTable(
+                name: "Destinos");
         }
     }
 }

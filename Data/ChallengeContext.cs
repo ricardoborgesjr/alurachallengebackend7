@@ -3,13 +3,14 @@ using Microsoft.EntityFrameworkCore;
 
 namespace alurachallengebackend7.Data
 {
-    public class DepoimentoContext : DbContext
+    public class ChallengeContext : DbContext
     {
-        public DepoimentoContext(DbContextOptions<DepoimentoContext> options) : base(options)
+        public ChallengeContext(DbContextOptions<ChallengeContext> options) : base(options)
         {
 
         }
 
         public DbSet<Depoimento> Depoimentos { get; set; }
+        public DbSet<Destino> Destinos { get; set; }
     }
 }
