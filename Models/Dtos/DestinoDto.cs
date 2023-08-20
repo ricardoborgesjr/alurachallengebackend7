@@ -11,5 +11,8 @@ namespace alurachallengebackend7.Models.Dtos
         [Range(0.0, Double.MaxValue, ErrorMessage = "O valor dever ser maior ou igual a zero")]
         public double Preco { get; set; }
         public string Foto { get; set; }
+        public string Foto2 { get; set; }
+        public string Meta { get; set; }
+        public string Descricao { get; set; }
     }
 }

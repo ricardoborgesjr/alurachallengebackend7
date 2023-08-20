@@ -1,6 +1,7 @@
 using alurachallengebackend7.Data;
 using alurachallengebackend7.Models;
 using alurachallengebackend7.Models.Dtos;
+using alurachallengebackend7.Services;
 using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 
@@ -21,9 +22,16 @@ namespace alurachallengebackend7.Controllers
 
         [HttpPost]
         [ProducesResponseType(StatusCodes.Status201Created)]
-        public IActionResult AdcionaDestino([FromBody] DestinoDto destinoDto)
+        public async Task<IActionResult> AdcionaDestino([FromBody] DestinoDto destinoDto)
         {
             Destino Destino = _mapper.Map<Destino>(destinoDto);
+
+            if (Destino.Descricao == string.Empty)
+            {
+                var prompt = $"Faça um resumo sobre {Destino.Nome} enfatizando o porque este lugar é incrível. Utilize uma linguagem informal e até 100 caracteres no máximo em cada parágrafo. Crie 2 parágrafos neste resumo.";
+                Destino.Descricao = await AiService.UseChatGPTAsync(prompt);
+            }
+
             _context.Destinos.Add(Destino);
             _context.SaveChanges();
             return CreatedAtAction(nameof(RecuperarDestinoPorId), new { id = Destino.Id }, Destino);
